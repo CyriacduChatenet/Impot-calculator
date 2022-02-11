@@ -1,26 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="homepage" class="col-12">
+    <Navbar/>
+    <h2 class="subtitle">Calculer l’împot sur les revenus 2021 </h2>
+    <Calculator/>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from "./components/Navbar.vue";
+import Calculator from "./components/Calculator.vue";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: "App",
+    components: { Navbar, Calculator }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import './assets/styles/import.scss';
+
+  #homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    .subtitle {
+      margin: 5vh 0;
+    }
+  }
 </style>
