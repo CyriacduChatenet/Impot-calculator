@@ -8,22 +8,22 @@
             <h4 class="input-title">Votre status:</h4>
             <div class="checkboxs-container col-6">
               <div class="checkbox-container col-5">
-                <input type="checkbox">
+                <input type="checkbox" :value="celibataire" @input="updateCelibataireState">
                 <p class="checkbox-title">Célibataire</p>
               </div>
               <div class="checkbox-container col-5">
-                <input type="checkbox">
+                <input type="checkbox" :value="couple" @input="updateCoupleState">
                 <p class="checkbox-title">Couple</p>
               </div>
             </div>
           </div>
           <div class="input-container col-12">
             <h4 class="input-title">Nombre d'enfant(s):</h4>
-            <input type="text" class="input-info col-6">
+            <input type="text" class="input-info col-6" :value="childrenNumber" @input="updateChildrenNumber">
           </div>
           <div class="input-container col-12">
             <h4 class="input-title">Revenus net annuel:</h4>
-            <input type="text" class="input-info col-6">
+            <input type="text" class="input-info col-6" :value="revenus" @input="updateRevenus">
           </div>
         </div>
       </div>
@@ -41,18 +41,38 @@
           </div>
           <div class="input-container col-12">
             <h4 class="input-title">Montant de l'împot sur le revenu:</h4>
-            <p class="input-result">2826 €</p>
+            <p class="input-result"></p>
           </div>
         </div>
       </div>
     </div>
-    <button class="start-btn">Lancer le simulateur</button>
+    <button class="start-btn" @click="calculator">Lancer le simulateur</button>
   </div>
 </template>
 
 <script>
+import { mapMutations, mapState } from "vuex";
+
 export default {
   name: "Calculator",
+  computed: {
+    ...mapMutations(['calculator']),
+    ...mapState(["childrenNumber", "revenus"]),
+  },
+  methods: {
+    updateChildrenNumber(event) {
+      this.$store.commit("updateChildrenNumber", event.target.value);
+    },
+    updateRevenus(event){
+      this.$store.commit("updateRevenus", event.target.value)
+    },
+    updateCelibataireState(event){
+      this.$store.commit("updateCelibataireState", event.target.value)
+    },
+    updateCoupleState(event){
+      this.$store.commit("updateCoupleState", event.target.value)
+    },
+  },
 };
 </script>
 
