@@ -27,7 +27,6 @@
           </div>
         </div>
       </div>
-      <div class="graph-container col-2"></div>
       <div class="result-infos col-4">
         <h2 class="subtitle">Montant de ma contribution</h2>
         <div class="inputs-container col-12">
@@ -108,10 +107,6 @@ export default {
       align-items: center;
       justify-content: space-around;
       height: 80%;
-    }
-    .graph-container {
-      height: 80%;
-      background-color: blue;
     }
     .subtitle {
       font-weight: $font-regular;
