@@ -1,4 +1,6 @@
-# impot-calculator
+<div>
+    <img src="/github-banner.png" alt="github banner"/>
+</div>
 
 ## Project setup
 ```

@@ -1,7 +1,7 @@
 <template>
   <div id="homepage" class="col-12">
     <Navbar/>
-    <h2 class="subtitle">Calculer l’împot sur les revenus 2021 </h2>
+    <h2 class="subtitle">Calculer l’impot sur les revenus 2021 </h2>
     <Calculator/>
   </div>
 </template>

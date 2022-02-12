@@ -39,7 +39,7 @@
             <p class="input-result">{{familyImpotTranche}} €</p>
           </div>
           <div class="input-container col-12">
-            <h4 class="input-title">Montant de l'împot sur le revenu:</h4>
+            <h4 class="input-title">Montant de l'impot sur le revenu:</h4>
             <p class="input-result">{{impotTotalRounded}} €</p>
           </div>
         </div>

@@ -1,6 +1,6 @@
 <template>
   <nav id="navbar" class="col-12">
-      <h1 class="title">Simulateur d’impôt sur le revenu pour les particuliers</h1>
+      <h1 class="title">Simulateur d’impot sur le revenu pour les particuliers</h1>
   </nav>
 </template>
 
