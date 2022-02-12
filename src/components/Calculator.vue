@@ -33,15 +33,15 @@
         <div class="inputs-container col-12">
           <div class="input-container col-12">
             <h4 class="input-title">Nombre de parts fiscales:</h4>
-            <p class="input-result"></p>
+            <p class="input-result">{{familyPart}} part(s)</p>
           </div>
           <div class="input-container col-12">
-            <h4 class="input-title">Traches d'imposition:</h4>
-            <p class="input-result"></p>
+            <h4 class="input-title">Trache d'imposition:</h4>
+            <p class="input-result">{{familyImpotTranche}} €</p>
           </div>
           <div class="input-container col-12">
             <h4 class="input-title">Montant de l'împot sur le revenu:</h4>
-            <p class="input-result"></p>
+            <p class="input-result">{{impotTotalRounded}} €</p>
           </div>
         </div>
       </div>
@@ -56,8 +56,8 @@ import { mapMutations, mapState } from "vuex";
 export default {
   name: "Calculator",
   computed: {
-    ...mapMutations(['calculator']),
-    ...mapState(["childrenNumber", "revenus"]),
+    ...mapMutations(['fiscalePart', 'impotCalc']),
+    ...mapState(["childrenNumber", "revenus", 'familyPart', 'familyImpotTranche', 'impotTotalRounded']),
   },
   methods: {
     updateChildrenNumber(event) {
@@ -72,6 +72,11 @@ export default {
     updateCoupleState(event){
       this.$store.commit("updateCoupleState", event.target.value)
     },
+
+    calculator(){
+      this.fiscalePart,
+      this.impotCalc
+    }
   },
 };
 </script>

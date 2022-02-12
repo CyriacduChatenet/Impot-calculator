@@ -30,13 +30,25 @@ export default createStore({
       },
     ],
     celibataire: "",
+    celibatairePart: 1,
     couple: "",
+    couplePart: 2,
     childrenNumber: "",
-    revenus: "",
-    fiscalePartNumber: 0,
-    impositionTranche: 0,
-    impotBeforePercentage: "",
-    impotAmount: 0,
+    childrenPart: 0,
+    familyPart: 0,
+
+    revenus:"",
+    revenusTransform:0,
+    revenusNetimposable:0,
+    revenuRemoveTranche:0,
+    tauxMarginalImpot: 0,
+    impotTotal: 0,
+    impotTotalRounded: 0,
+    familyImpotTranche: 0,
+
+    activeState: "on",
+    unactiveState:"",
+    noChildren:0
   },
   mutations: {
     updateChildrenNumber: (state, payload) => {
@@ -53,16 +65,61 @@ export default createStore({
     },
 
     fiscalePart: (state) => {
-      if(state.celibataire === "on"){
-        state.fiscalePartNumber = 1
+      if(state.celibataire === state.activeState && state.childrenNumber == state.noChildren){
+        return state.familyPart = state.celibatairePart
       }
-      if(state.couple === "on"){
-        state.fiscalePartNumber = 2
+      if(state.celibataire === state.activeState && state.childrenNumber != state.noChildren){
+        state.childrenPart = state.childrenNumber /2
+        return state.familyPart = state.celibatairePart + state.childrenPart
+      }
+      if(state.couple === state.activeState && state.childrenNumber == state.noChildren){
+        return state.familyPart = state.couplePart
+      }
+      if(state.couple === state.activeState && state.childrenNumber != state.noChildren){
+        state.childrenPart = state.childrenNumber /2
+        return state.familyPart = state.couplePart + state.childrenPart
       }
     },
 
-    calculator: (fiscalePart) => {
-      fiscalePart()
+    impotCalc: (state) => {
+      state.revenusTransform = parseInt(state.revenus)
+      state.revenusNetimposable = state.revenusTransform / state.familyPart
+
+      if(state.revenusNetimposable >= state.RATES_2022[0].min && state.revenusNetimposable <= state.RATES_2022[0].max){
+        state.revenuRemoveTranche = state.revenusNetimposable - state.RATES_2022[0].min
+        state.tauxMarginalImpot = state.revenuRemoveTranche * state.RATES_2022[0].rate
+        state.impotTotal = state.tauxMarginalImpot * state.familyPart
+        state.familyImpotTranche = `de ${state.RATES_2022[0].min} à ${state.RATES_2022[0].max}`
+        return state.impotTotalRounded = Math.round(state.impotTotal)
+      }
+      if(state.revenusNetimposable >= state.RATES_2022[1].min && state.revenusNetimposable <= state.RATES_2022[1].max){
+        state.revenuRemoveTranche = state.revenusNetimposable - state.RATES_2022[1].min
+        state.tauxMarginalImpot = state.revenuRemoveTranche * state.RATES_2022[1].rate
+        state.impotTotal = state.tauxMarginalImpot * state.familyPart
+        state.familyImpotTranche = `de ${state.RATES_2022[1].min} à ${state.RATES_2022[1].max}`
+        return state.impotTotalRounded = Math.round(state.impotTotal)
+      }
+      if(state.revenusNetimposable >= state.RATES_2022[2].min && state.revenusNetimposable <= state.RATES_2022[2].max){
+        state.revenuRemoveTranche = state.revenusNetimposable - state.RATES_2022[2].min
+        state.tauxMarginalImpot = state.revenuRemoveTranche * state.RATES_2022[2].rate
+        state.impotTotal = state.tauxMarginalImpot * state.familyPart
+        state.familyImpotTranche = `de ${state.RATES_2022[2].min} à ${state.RATES_2022[2].max}`
+        return state.impotTotalRounded = Math.round(state.impotTotal)
+      }
+      if(state.revenusNetimposable >= state.RATES_2022[3].min && state.revenusNetimposable <= state.RATES_2022[3].max){
+        state.revenuRemoveTranche = state.revenusNetimposable - state.RATES_2022[3].min
+        state.tauxMarginalImpot = state.revenuRemoveTranche * state.RATES_2022[3].rate
+        state.impotTotal = state.tauxMarginalImpot * state.familyPart
+        state.familyImpotTranche = `de ${state.RATES_2022[3].min} à ${state.RATES_2022[3].max}`
+        return state.impotTotalRounded = Math.round(state.impotTotal)
+      }
+      if(state.revenusNetimposable >= state.RATES_2022[4].min && state.revenusNetimposable <= state.RATES_2022[4].max){
+        state.revenuRemoveTranche = state.revenusNetimposable - state.RATES_2022[4].min
+        state.tauxMarginalImpot = state.revenuRemoveTranche * state.RATES_2022[4].rate
+        state.impotTotal = state.tauxMarginalImpot * state.familyPart
+        state.familyImpotTranche = `de ${state.RATES_2022[4].min} à ${state.RATES_2022[4].max}`
+        return state.impotTotalRounded = Math.round(state.impotTotal)
+      }
     },
   },
   actions: {},
