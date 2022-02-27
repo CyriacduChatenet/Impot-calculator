@@ -35,7 +35,7 @@
             />
           </div>
           <div class="input-container col-12">
-            <h4 class="input-title">Revenus net annuel:</h4>
+            <h4 class="input-title">Revenus net annuels:</h4>
             <input
               type="text"
               class="input-info col-6"
@@ -53,7 +53,7 @@
             <p class="input-result">{{ familyPart }} part(s)</p>
           </div>
           <div class="input-container col-12">
-            <h4 class="input-title">Trache d'imposition:</h4>
+            <h4 class="input-title">Tranche d'imposition:</h4>
             <p class="input-result">{{ familyImpotTranche }} €</p>
           </div>
           <div class="input-container col-12">
