@@ -100,7 +100,7 @@ export default {
       this.fiscalePart, this.impotCalc;
       setTimeout(() => {
         this.ResetInfos
-      },2000)
+      },10000)
     },
   },
 };
