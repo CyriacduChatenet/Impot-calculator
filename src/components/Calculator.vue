@@ -73,7 +73,7 @@ import { mapMutations, mapState } from "vuex";
 export default {
   name: "Calculator",
   computed: {
-    ...mapMutations(["fiscalePart", "impotCalc"]),
+    ...mapMutations(["fiscalePart", "impotCalc", 'ResetInfos']),
     ...mapState([
       "childrenNumber",
       "revenus",
@@ -98,6 +98,9 @@ export default {
 
     calculator() {
       this.fiscalePart, this.impotCalc;
+      setTimeout(() => {
+        this.ResetInfos
+      },2000)
     },
   },
 };

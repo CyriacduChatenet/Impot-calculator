@@ -121,6 +121,29 @@ export default createStore({
         return state.impotTotalRounded = Math.round(state.impotTotal)
       }
     },
+
+    ResetInfos : (state) => {
+      state.celibataire= ""
+      state.celibatairePart = 1
+      state.couple = ""
+      state.couplePart = 2
+      state.childrenNumber = ""
+      state.childrenPart = 0
+      state.familyPart = 0
+  
+      state.revenus = ""
+      state.revenusTransform = 0
+      state.revenusNetimposable = 0
+      state.revenuRemoveTranche = 0
+      state.tauxMarginalImpot = 0
+      state.impotTotal = 0
+      state.impotTotalRounded = 0
+      state.familyImpotTranche = 0
+  
+      state.activeState = "on"
+      state.unactiveState = ""
+      state.noChildren = 0
+    }
   },
   actions: {},
   modules: {},
